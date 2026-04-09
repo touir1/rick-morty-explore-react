@@ -1,16 +1,81 @@
-# React + Vite
+# Rick & Morty Explorer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React application for browsing and exploring characters from the Rick and Morty universe, built with Vite and React Router.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Character list** — browse all characters with pagination
+- **Search & filter** — filter characters by name, status, species, and more
+- **Character detail** — view detailed info for each character (status, species, gender, origin, location, episode count)
+- **Client-side routing** — multi-page navigation with React Router
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- [React 19](https://react.dev/) — UI library
+- [React Router 7](https://reactrouter.com/) — client-side routing
+- [Vite 8](https://vite.dev/) — build tool and dev server
+- [Rick and Morty API](https://rickandmortyapi.com/) — public REST API
 
-## Expanding the ESLint configuration
+## Project Structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```
+src/
+├── apis/
+│   └── character.api.js       # API calls (getAll, getById)
+├── components/
+│   ├── CharacterList.jsx       # Character grid with pagination
+│   ├── CharacterSearch.jsx     # Search/filter form
+│   ├── Navbab.jsx              # Navigation bar
+│   ├── Home.jsx                # Home page component
+│   └── About.jsx               # About page component
+├── pages/
+│   ├── CharacterListPage.jsx   # Characters listing page
+│   └── CharacterDetailPage.jsx # Single character detail page
+└── App.jsx                     # Routes definition
+```
+
+## Routes
+
+| Path | Page |
+|------|------|
+| `/` | Home |
+| `/about` | About |
+| `/characters` | Character list with search & pagination |
+| `/character/:id` | Character detail |
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- npm or yarn
+
+### Installation
+
+```bash
+npm install
+```
+
+### Development
+
+```bash
+npm run dev
+```
+
+### Build
+
+```bash
+npm run build
+```
+
+### Preview production build
+
+```bash
+npm run preview
+```
+
+### Lint
+
+```bash
+npm run lint
+```
