@@ -9,7 +9,6 @@ const FavoritesContext = createContext({
 })
 
 export function FavoritesProvider({ children }) {
-
     
     const [favorites, setFavorites] = useState(() => {
         const storedFavorites = localStorage.getItem("favorites");
