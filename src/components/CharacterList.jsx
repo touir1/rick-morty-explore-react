@@ -7,31 +7,36 @@ import FavoritesContext from "../contexts/FavoritesContext";
 function CharacterList({ characters, page, pageCount, onPageChange }) {
     const { isFavorite, addFavorite, removeFavorite } = useContext(FavoritesContext);
 
-    function toggleFavorite(e, characterId) {
+    function toggleFavorite(e, isFav, characterId) {
         e.preventDefault();
-        isFavorite(characterId) ? removeFavorite(characterId) : addFavorite(characterId);
+        isFav ? removeFavorite(characterId) : addFavorite(characterId);
     }
 
     return (
         <>
             <Pagination page={page} pageCount={pageCount} onPageChange={onPageChange} />
             <ul className="blocImage">
-                {characters && characters.map((character) => (
-                    <li key={character.id} className="characterItem">
-                        <Link to={`/character/${character.id}`}>
-                            <div className="characterImageWrapper">
-                                <img src={character.image} alt={character.name} />
-                                <span
-                                    className={`starIcon ${isFavorite(character.id) ? "favorite" : "unfavorite"}`}
-                                    onClick={(e) => toggleFavorite(e, character.id)}
-                                >
-                                    {isFavorite(character.id) ? "\u2605" : "\u2606" /* u2605: filled star, u2606: empty star */} 
-                                </span>
-                            </div>
-                            <p>{character.name}</p>
-                        </Link>
-                    </li>
-                ))}
+                {characters && characters.map((character) => {
+                    
+                    const isFav = isFavorite(character.id);
+
+                    return (
+                        <li key={character.id} className="characterItem">
+                            <Link to={`/character/${character.id}`}>
+                                <div className="characterImageWrapper">
+                                    <img src={character.image} alt={character.name} />
+                                    <span
+                                        className={`starIcon ${isFav ? "favorite" : "unfavorite"}`}
+                                        onClick={(e) => toggleFavorite(e, isFav, character.id)}
+                                    >
+                                        {isFav ? "\u2605" : "\u2606" /* u2605: filled star, u2606: empty star */} 
+                                    </span>
+                                </div>
+                                <p>{character.name}</p>
+                            </Link>
+                        </li>
+                    );
+                })}
             </ul>
             <Pagination page={page} pageCount={pageCount} onPageChange={onPageChange} />
         </>
