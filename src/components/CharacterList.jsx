@@ -25,7 +25,7 @@ function CharacterList({ characters, page, pageCount, onPageChange }) {
                                     className={`starIcon ${isFavorite(character.id) ? "favorite" : "unfavorite"}`}
                                     onClick={(e) => toggleFavorite(e, character.id)}
                                 >
-                                    {isFavorite(character.id) ? "★" : "☆"}
+                                    {isFavorite(character.id) ? "\u2605" : "\u2606" /* u2605: filled star, u2606: empty star */} 
                                 </span>
                             </div>
                             <p>{character.name}</p>
