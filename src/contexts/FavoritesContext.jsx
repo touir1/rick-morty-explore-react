@@ -9,9 +9,12 @@ const FavoritesContext = createContext({
 })
 
 export function FavoritesProvider({ children }) {
-    // use localStorage to persist favorites across page reloads
-    const storedFavorites = localStorage.getItem("favorites");
-    const [favorites, setFavorites] = useState(storedFavorites ? JSON.parse(storedFavorites) : []);
+
+    
+    const [favorites, setFavorites] = useState(() => {
+        const storedFavorites = localStorage.getItem("favorites");
+        return storedFavorites ? JSON.parse(storedFavorites) : [];
+    });
 
     const addFavorite = (characterId) => {
         setFavorites((prev) => {
