@@ -9,14 +9,24 @@ const FavoritesContext = createContext({
 })
 
 export function FavoritesProvider({ children }) {
-    const [favorites, setFavorites] = useState([]);
+    // use localStorage to persist favorites across page reloads
+    const storedFavorites = localStorage.getItem("favorites");
+    const [favorites, setFavorites] = useState(storedFavorites ? JSON.parse(storedFavorites) : []);
 
     const addFavorite = (characterId) => {
-        setFavorites((prev) => [...prev, characterId]);
+        setFavorites((prev) => {
+            const updatedFavorites = [...prev, characterId];
+            localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+            return updatedFavorites;
+        });
     }
 
     const removeFavorite = (characterId) => {
-        setFavorites((prev) => prev.filter((id) => id !== characterId));
+        setFavorites((prev) => {
+            const updatedFavorites = prev.filter((id) => id !== characterId);
+            localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+            return updatedFavorites;
+        });
     }
 
     const isFavorite = (characterId) => {
