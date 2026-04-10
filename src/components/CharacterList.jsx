@@ -1,14 +1,13 @@
 import "./CharacterList.css";
 import { Link } from "react-router";
+import Pagination from "./Pagination";
 
 function CharacterList({ characters, page, pageCount, onPageChange }) {
+
+    
     return (
         <>
-            <div className="top-pagination">
-                <button onClick={() => onPageChange(page - 1)} disabled={page === 1}>Previous</button>
-                <input type="number" min={1} max={pageCount} value={page} onChange={(e) => onPageChange(Number(e.target.value))} />
-                <button onClick={() => onPageChange(page + 1)} disabled={page >= pageCount}>Next</button>
-            </div>
+            <Pagination page={page} pageCount={pageCount} onPageChange={onPageChange} />
             <ul className="blocImage">
                 {characters && characters.map((character) => (
                     <li key={character.id} className="characterItem">
@@ -19,11 +18,7 @@ function CharacterList({ characters, page, pageCount, onPageChange }) {
                     </li>
                 ))}
             </ul>
-            <div className="bottom-pagination">
-                <button onClick={() => onPageChange(page - 1)} disabled={page === 1}>Previous</button>
-                <input type="number" min={1} max={pageCount} value={page} onChange={(e) => onPageChange(Number(e.target.value))} />
-                <button onClick={() => onPageChange(page + 1)} disabled={page >= pageCount}>Next</button>
-            </div>
+            <Pagination page={page} pageCount={pageCount} onPageChange={onPageChange} />
         </>
     )
 }
