@@ -9,3 +9,26 @@
 .characterItem {
     margin: 10px;
 }
+
+.characterImageWrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.starIcon {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    font-size: 2.5rem;
+    cursor: pointer;
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.6);
+    line-height: 1;
+}
+
+.starIcon.favorite {
+    color: gold;
+}
+
+.starIcon.unfavorite {
+    color: gray;
+}
