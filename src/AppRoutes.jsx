@@ -3,6 +3,8 @@ import Home from './components/Home'
 import About from './components/About'
 import CharacterListPage from './pages/CharacterListPage'
 import CharacterDetailPage from './pages/CharacterDetailPage'
+import DemoReducerPage from './pages/DemoReducerPage'
+import TodoListPage from './pages/TodoListPage'
 
 function AppRoutes() {
   const appRoutes = [
@@ -10,6 +12,9 @@ function AppRoutes() {
     { path: '/about', element: <About /> },
     { path: '/characters', element: <CharacterListPage /> },
     { path: '/character/:id', element: <CharacterDetailPage /> },
+    { path: '/demo-reducer', element: <DemoReducerPage /> },
+    { path: '/todo-list', element: <TodoListPage /> }
+
   ];
 
   return (
