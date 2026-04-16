@@ -1,15 +1,15 @@
 import "./CharacterList.css";
 import { Link } from "react-router";
-import { useContext } from "react";
 import Pagination from "./Pagination";
-import FavoritesContext from "../contexts/FavoritesContext";
+import { useFavorites } from "../hooks/useFavorites.hook";
+
 
 function CharacterList({ characters, page, pageCount, onPageChange }) {
-    const { isFavorite, addFavorite, removeFavorite } = useContext(FavoritesContext);
+    const { isFavorite, toggleFavorite } = useFavorites();
 
-    function toggleFavorite(e, isFav, characterId) {
+    function handleToggleFavorite(e, isFav, characterId) {
         e.preventDefault();
-        isFav ? removeFavorite(characterId) : addFavorite(characterId);
+        toggleFavorite(characterId);
     }
 
     return (
@@ -18,18 +18,16 @@ function CharacterList({ characters, page, pageCount, onPageChange }) {
             <ul className="blocImage">
                 {characters && characters.map((character) => {
                     
-                    const isFav = isFavorite(character.id);
-
                     return (
                         <li key={character.id} className="characterItem">
                             <Link to={`/character/${character.id}`}>
                                 <div className="characterImageWrapper">
                                     <img src={character.image} alt={character.name} />
                                     <span
-                                        className={`starIcon ${isFav ? "favorite" : "unfavorite"}`}
-                                        onClick={(e) => toggleFavorite(e, isFav, character.id)}
+                                        className={`starIcon ${isFavorite(character.id) ? "favorite" : "unfavorite"}`}
+                                        onClick={(e) => handleToggleFavorite(e, isFavorite(character.id), character.id)}
                                     >
-                                        {isFav ? "\u2605" : "\u2606" /* u2605: filled star, u2606: empty star */} 
+                                        {isFavorite(character.id) ? "\u2605" : "\u2606" /* u2605: filled star, u2606: empty star */} 
                                     </span>
                                 </div>
                                 <p>{character.name}</p>

@@ -1,8 +1,8 @@
 import { NavLink } from "react-router";
 import './Navbar.css'
 import { useSelector, useDispatch } from "react-redux";
-import { toggleTheme } from "../slices/themeSlice";
-import { themeSelector } from "../slices/themeSelectors";
+import { toggleTheme } from "../slices/theme.slice";
+import { themeSelector } from "../slices/theme.selector";
 
 function Navbab() {
     const theme = useSelector(themeSelector);
