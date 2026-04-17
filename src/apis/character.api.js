@@ -1,4 +1,4 @@
-const API_BASE_URL = "https://rickandmortyapi.com/api";
+export const API_BASE_URL = "https://rickandmortyapi.com/api";
 
 const getAll = async (filters) => {
     // check if filters is empty, if so, don't add query params
