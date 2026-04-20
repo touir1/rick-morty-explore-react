@@ -3,10 +3,14 @@ import './Navbar.css'
 import { useSelector, useDispatch } from "react-redux";
 import { toggleTheme } from "../slices/theme.slice";
 import { themeSelector } from "../slices/theme.selector";
+import { selectorNotificationMessage } from "../slices/notifications.selector";
+import { selectorNotificationVisible } from "../slices/notifications.selector";
 
 function Navbab() {
     const theme = useSelector(themeSelector);
     const dispatch = useDispatch();
+    const notificationMessage = useSelector(selectorNotificationMessage);
+    const notificationVisible = useSelector(selectorNotificationVisible);
 
     return (
         <nav className='navbar'>
@@ -18,7 +22,7 @@ function Navbab() {
                 <NavLink to="/todo-list">Todo List</NavLink>
                 <button className='navbar-theme' onClick={() => dispatch(toggleTheme())}>Theme: {theme}</button>
             </div>
-            
+            {notificationVisible && <div className='navbar-notification'>{notificationMessage}</div>}
         </nav>
     )
 }

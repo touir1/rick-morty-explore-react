@@ -5,13 +5,16 @@ import charactersReducer from '../slices/characters.slice';
 import storage from 'redux-persist/es/storage';
 import { persistReducer } from 'redux-persist';
 import { FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER, persistStore } from 'redux-persist';
-
+import { favoritesMiddleware } from '../middelwares/favorites.middleware';
+import notificationReducer from '../slices/notifications.slice';
 
 const rootReducer = combineReducers({
     theme: themeReducer,
     favorites: favoritesReducer,
     characters: charactersReducer,
+    notifications: notificationReducer,
 });
+
 const persistConfig = {
     key: 'root',
     storage,
@@ -29,9 +32,7 @@ export const store = configureStore({
         serializableCheck: {
             ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
         },
-    }),
+    }).concat(favoritesMiddleware),
 });
-
-console.log(storage)
 
 export const persistor = persistStore(store);
